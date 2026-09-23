@@ -20,5 +20,5 @@ select
 from {{ ref('brz_transactions') }}
 
 {% if is_incremental() %}
-  where transaction_datetime > (select max(transaction_datetime) from {{ this }})
+  where transaction_datetime >= (select max(transaction_datetime) from {{ this }})
 {% endif %}
